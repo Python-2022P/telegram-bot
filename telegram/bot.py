@@ -29,8 +29,16 @@ class Bot:
         Returns:
           A  telegram.Update object is returned.
         """
-        pass
-
+        updates = []
+        url = self.base_url + '/getUpdates'
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            resluts = data['result']
+            for result in resluts:
+                update = Update(result)
+                updates.append(update)
+        return updates
 
     def sendMessage(self,chat_id,text):
         """Use this method to send text messages.
@@ -43,8 +51,12 @@ class Bot:
         Returns:
           A telegram.Message instance representing the message posted.
         """
-        pass
-
+        url = self.base_url + '/sendMessage'
+        payload = {
+            'chat_id': chat_id,
+            'text': text
+        }
+        requests.get(url, params=payload)
     
     def sendPhoto(self,
                   chat_id,
