@@ -18,9 +18,21 @@ class User:
 
     def to_dict(self)->dict:
         '''Returns a dictionary representation of the object.'''
-        pass
+        return {
+            'id': self.id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'username': self.username,
+            'is_bot': self.is_bot,
+            'language_code': self.language_code,
+            'is_premium': self.is_premium,
+            'added_to_attachment_menu': self.added_to_attachment_menu,
+            'can_join_groups': self.can_join_groups,
+            'can_read_all_group_messages': self.can_read_all_group_messages,
+            'supports_inline_queries': self.supports_inline_queries
+        }
 
 
     def __str__(self) -> str:
         '''Returns a string representation of the object.'''
-        pass
+        return json.dumps(self.to_dict(), indent=4)

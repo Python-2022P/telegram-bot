@@ -13,7 +13,13 @@ class Bot:
           A telegram.User instance representing that bot if the
           credentials are valid, None otherwise.
         """
-        pass
+        url = self.base_url + '/getMe'
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            user = User(data['result'])
+            return user
+
 
         
     def getUpdates(self):
