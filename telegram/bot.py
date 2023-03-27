@@ -13,7 +13,13 @@ class Bot:
           A telegram.User instance representing that bot if the
           credentials are valid, None otherwise.
         """
-        pass
+        url = self.base_url + '/getMe'
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            user = User(data['result'])
+            return user
+
 
         
     def getUpdates(self):
@@ -23,13 +29,21 @@ class Bot:
         Returns:
           A  telegram.Update object is returned.
         """
-        pass
+        updates = []
+        url = self.base_url + '/getUpdates'
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            resluts = data['result']
+            for result in resluts:
+                update = Update(result)
+                updates.append(update)
+        return updates
 
 
     def sendMessage(self,chat_id,text):
         """Use this method to send text messages.
-        Args:
-          chat_id:
+            chat_id:
             Unique identifier for the message recipient — telegram.User or
             telegram.GroupChat id.
           text:
@@ -37,7 +51,12 @@ class Bot:
         Returns:
           A telegram.Message instance representing the message posted.
         """
-        pass
+        url = self.base_url + '/sendMessage'
+        payload = {
+            'chat_id': chat_id,
+            'text': text
+        }
+        requests.get(url, params=payload)
 
     
     def sendPhoto(self,
@@ -86,7 +105,12 @@ class Bot:
         Returns:
           A telegram.Message instance representing the message posted.
         """
-        pass
+        url = self.base_url + '/sendSticker'
+        payload = {
+            'chat_id': chat_id,
+            'text': sticker 
+        }
+        requests.get(url, params=payload)
 
 
     def sendLocation(self,
@@ -110,7 +134,13 @@ class Bot:
         Returns:
           A telegram.Message instance representing the message posted.
         """
-        pass
+        url = self.base_url + '/sendLocation'
+        payload = {
+            'chat_id': chat_id,
+            'latitude': latitude,
+            'longitude' : longitude
+        }
+        requests.get(url, params=payload)
 
 
     def sendDocument(self,
@@ -133,7 +163,12 @@ class Bot:
         Returns:
           A telegram.Message instance representing the message posted.
         """
-        pass
+        url = self.base_url + '/sendSticker'
+        payload = {
+            'chat_id': chat_id,
+            'document': document
+        }
+        requests.get(url, params=payload)
 
     
     def sendAudio(self,
@@ -159,7 +194,12 @@ class Bot:
         Returns:
           A telegram.Message instance representing the message posted.
         """
-        pass
+        url = self.base_url + '/sendAudio'
+        payload = {
+            'chat_id': chat_id,
+            'audio': audio
+        }
+        requests.get(url , params=payload)
 
 
     def sendVideo(self,
@@ -183,4 +223,9 @@ class Bot:
         Returns:
           A telegram.Message instance representing the message posted.
         """
-        pass
+        url = self.base_url + '/sendVideo'
+        payload = {
+            'chat_id': chat_id,
+            'video': video
+        }
+        requests.get(url , params=payload)
