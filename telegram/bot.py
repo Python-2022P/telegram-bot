@@ -82,7 +82,12 @@ class Bot:
         Returns:
           A telegram.Message instance representing the message posted.
         """
-        pass
+        url = self.base_url + '/sendSticker'
+        payload = {
+            'chat_id': chat_id,
+            'text': photo
+        }
+        requests.get(url, params=payload)
         
 
     def sendSticker(self,
