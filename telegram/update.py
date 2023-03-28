@@ -9,7 +9,10 @@ class Update:
     
     def to_dict(self)->dict:
         '''Returns a dictionary representation of the object.'''
-        pass
+        return {
+            'update_id': self.update_id,
+            'message': self.message
+        }
 
 
     def __str__(self) -> str:
