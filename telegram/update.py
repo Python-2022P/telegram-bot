@@ -17,5 +17,5 @@ class Update:
 
     def __str__(self) -> str:
         '''Returns a string representation of the object.'''
-        pass
+        return json.dumps(self.to_dict(), indent=4)
     
