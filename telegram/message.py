@@ -18,7 +18,13 @@ class Message:
 
     def to_dict(self)->dict:
         '''Returns a dictionary representation of the object.'''
-        pass
+        return {
+            'message_id': self.message_id,
+            'from_user': self.from_user,
+            'chat': self.chat,
+            'text': self.text,
+            'photo': self.photo
+        }
 
     
     def reply_text(self, text: str) -> None:
@@ -38,5 +44,5 @@ class Message:
 
     def __str__(self) -> str:
         '''Returns a string representation of the object.'''
-        pass
+        return json.dumps(self.to_dict(), indent=4)
     

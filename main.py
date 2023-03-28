@@ -10,4 +10,6 @@ chat_id = last_update.message.from_user.id
 p = last_update.message.photo[0]
 bot.sendPhoto(chat_id, p.file_id)
 print(p)
+print(chat_id)
+bot.__init__(TOKEN)
 

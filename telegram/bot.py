@@ -1,10 +1,12 @@
 import requests
 from .user import User
 from .update import Update
+from .message import Message
 
 
 class Bot:
     def __init__(self, token:str)->None:
+        self.token = '5591155154:AAHn0llNadmGCykPsdpkfc5OXcv54S0MQyc'
         self.base_url = f'https://api.telegram.org/bot{token}'
 
     def getMe(self)->User:
@@ -29,7 +31,16 @@ class Bot:
         Returns:
           A  telegram.Update object is returned.
         """
-        pass
+        updates = []
+        url = self.base_url + '/getUpdates'
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            resluts = data['result']
+            for result in resluts:
+                update = Update(result)
+                updates.append(update)
+        return updates
 
 
     def sendMessage(self,chat_id,text):
@@ -43,7 +54,13 @@ class Bot:
         Returns:
           A telegram.Message instance representing the message posted.
         """
-        pass
+        payload = {
+        'chat_id': chat_id,
+        'text': text
+        }
+        url = self.base_url + '/sendMessage'
+    
+        requests.get(url, json=payload)
 
     
     def sendPhoto(self,
@@ -69,7 +86,13 @@ class Bot:
         Returns:
           A telegram.Message instance representing the message posted.
         """
-        pass
+        payload = {
+        'chat_id': chat_id,
+        'text': photo
+        }
+        url = self.base_url + '/sendPhoto'
+    
+        requests.get(url, json=payload)
         
 
     def sendSticker(self,
