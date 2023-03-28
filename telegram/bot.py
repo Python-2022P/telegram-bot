@@ -88,7 +88,7 @@ class Bot:
         """
         payload = {
         'chat_id': chat_id,
-        'text': photo
+        'photo': photo
         }
         url = self.base_url + '/sendPhoto'
     
@@ -115,7 +115,13 @@ class Bot:
         Returns:
           A telegram.Message instance representing the message posted.
         """
-        pass
+        payload = {
+        'chat_id': chat_id,
+        'text': photo
+        }
+        url = self.base_url + '/sendPhoto'
+    
+        requests.get(url, json=payload)
 
 
     def sendLocation(self,
