@@ -9,10 +9,13 @@ class Update:
     
     def to_dict(self)->dict:
         '''Returns a dictionary representation of the object.'''
-        pass
+        return {
+            "Update_id":self.update_id,
+            "Message":self.message
+        }
 
 
     def __str__(self) -> str:
         '''Returns a string representation of the object.'''
-        pass
+        return json.dumps(self.to_dict(),indent=4)
     

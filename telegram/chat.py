@@ -15,9 +15,18 @@ class Chat:
 
     def to_dict(self)->dict:
         '''Returns a dictionary representation of the object.'''
-        pass
+        return {
+            "id": self.id,
+            "type": self.type,
+            "title": self.title,
+            "username": self.username,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "photo": self.photo,
+            "bio": self.bio
+        }
 
 
     def __str__(self) -> str:
         '''Returns a string representation of the object.'''
-        pass
+        return json.dumps(self.to_dict(),indent=4)

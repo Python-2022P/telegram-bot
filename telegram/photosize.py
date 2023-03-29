@@ -11,9 +11,15 @@ class PhotoSize:
 
     def to_dict(self)->dict:
         '''Returns a dictionary representation of the object.'''
-        pass
+        return {
+            "file_id":self.file_id,
+            "file_unique_id":self.file_unique_id,
+            "width":self.width,
+            "heigth":self.height,
+            "file_size":self.file_size
+        }
 
     
     def __str__(self) -> str:
         '''Returns a string representation of the object.'''
-        pass
+        return json.dumps(self.to_dict(),indent=4)
